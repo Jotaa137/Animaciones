@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conejo Zanahoria 3D</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; height: 100vh; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Segoe UI', sans-serif; perspective: 800px;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-size: 300% 300%;
+    animation: fondoGrad 8s ease infinite;
+  }
+  @keyframes fondoGrad { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  .fondo { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
+  .zan {
+    position: absolute; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
+    animation: flotar3d var(--dur,6s) ease-in-out infinite;
+    will-change: transform;
+  }
+  .zan.lejos { filter: blur(2px) brightness(0.7); opacity: 0.6; }
+  .zan.cerca { filter: drop-shadow(0 20px 18px rgba(0,0,0,0.7)); }
+  @keyframes flotar3d {
+    0% { transform: translateY(0) translateZ(0) rotate(-8deg) rotateY(-12deg); opacity: 0.85; }
+    50% { transform: translateY(-28px) translateZ(60px) rotate(8deg) rotateY(12deg); opacity: 1; }
+    100% { transform: translateY(0) translateZ(0) rotate(-8deg) rotateY(-12deg); opacity: 0.85; }
+  }
+  .halo {
+    position: absolute; width: 280px; height: 280px; border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%,-45%);
+    background: radial-gradient(circle, rgba(255,255,255,0.22), rgba(255,255,255,0.05) 60%, transparent 70%);
+  }
+  .suelo {
+    position: absolute; width: 190px; height: 28px; border-radius: 50%;
+    background: rgba(0,0,0,0.35); filter: blur(6px);
+    bottom: 18%; left: 50%; transform: translateX(-50%);
+    animation: sombra 1s ease-in-out infinite alternate;
+  }
+  @keyframes sombra { from { transform: translateX(-50%) scale(1); opacity: 0.6; } to { transform: translateX(-50%) scale(0.8); opacity: 0.3; } }
+  .star { position: absolute; animation: brillar 1.5s ease-in-out infinite alternate; }
+  @keyframes brillar { from { transform: scale(0.6) rotate(-15deg); opacity: 0.5; } to { transform: scale(1.3) rotate(15deg); opacity: 1; } }
+  .escena { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; animation: bote 1s ease-in-out infinite alternate; }
+  @keyframes bote { from { transform: translateY(0);} to { transform: translateY(-20px);} }
+  .bocadillo {
+    background: linear-gradient(135deg, #fff, #ffe8cc);
+    padding: 16px 22px; border-radius: 22px;
+    font-weight: 800; font-size: 24px; color: #6a2c00;
+    margin-bottom: 20px; position: relative; text-align: center;
+    max-width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 3px solid #ff9f1c;
+    animation: pop 0.8s ease-in-out infinite alternate;
+  }
+  .bocadillo:after {
+    content: ''; position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+    border-width: 16px 12px 0 12px; border-style: solid;
+    border-color: #ff9f1c transparent transparent transparent;
+  }
+  @keyframes pop { from { transform: scale(0.92) rotate(-2deg);} to { transform: scale(1.05) rotate(2deg);} }
+  .conejo-wrap {
+    font-size: 140px; line-height: 1;
+    filter: drop-shadow(0 20px 20px rgba(0,0,0,0.6));
+    animation: meneo 0.6s ease-in-out infinite alternate;
+    background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    border-radius: 50%; padding: 20px;
+  }
+  @keyframes meneo { from { transform: rotate(-6deg) scale(1);} to { transform: rotate(6deg) scale(1.1);} }
+  .nombre {
+    margin-top: 12px; font-size: 32px; font-weight: 900; letter-spacing: 4px;
+    color: white; text-shadow: 0 2px 0 #ff9f1c, 0 4px 15px rgba(0,0,0,0.6);
+    background: rgba(255,255,255,0.15); padding: 6px 20px; border-radius: 30px;
+    border: 2px solid rgba(255,255,255,0.4);
+    animation: brilloNombre 1.5s ease-in-out infinite alternate;
+  }
+  @keyframes brilloNombre { from { transform: scale(0.95); } to { transform: scale(1.05); } }
+</style>
+</head>
+<body>
+  <div class="fondo">
+    <span class="zan" style="top:5%;left:8%;font-size:60px;--dur:7s;animation-delay:0s">🥕</span>
+    <span class="zan" style="top:12%;left:82%;font-size:45px;--dur:6s;animation-delay:-1s">🥕</span>
+    <span class="zan" style="top:65%;left:4%;font-size:75px;--dur:8s;animation-delay:-2s">🥕</span>
+    <span class="zan" style="top:78%;left:88%;font-size:55px;--dur:6.5s;animation-delay:-0.5s">🥕</span>
+    <span class="zan" style="top:42%;left:12%;font-size:35px;--dur:5.5s;animation-delay:-3s">🥕</span>
+    <span class="zan" style="top:28%;left:68%;font-size:70px;--dur:7.5s;animation-delay:-1.5s">🥕</span>
+    <span class="zan" style="top:58%;left:55%;font-size:40px;--dur:6.2s;animation-delay:-2.5s">🥕</span>
+    <span class="zan" style="top:8%;left:45%;font-size:38px;--dur:5.8s;animation-delay:-0.8s">🥕</span>
+    <span class="zan" style="top:85%;left:40%;font-size:50px;--dur:7.2s;animation-delay:-3.5s">🥕</span>
+    <span class="zan lejos" style="top:3%;left:30%;font-size:28px;--dur:9s;animation-delay:-1s">🥕</span>
+    <span class="zan lejos" style="top:22%;left:55%;font-size:26px;--dur:8.5s;animation-delay:-4s">🥕</span>
+    <span class="zan lejos" style="top:55%;left:90%;font-size:30px;--dur:9.5s;animation-delay:-2s">🥕</span>
+    <span class="zan lejos" style="top:88%;left:15%;font-size:28px;--dur:8s;animation-delay:-5s">🥕</span>
+    <span class="zan lejos" style="top:48%;left:35%;font-size:24px;--dur:10s;animation-delay:-3s">🥕</span>
+    <span class="zan cerca" style="top:35%;left:88%;font-size:85px;--dur:5.5s;animation-delay:-2s">🥕</span>
+    <span class="zan cerca" style="top:72%;left:68%;font-size:90px;--dur:6s;animation-delay:-1s">🥕</span>
+    <span class="zan cerca" style="top:18%;left:2%;font-size:80px;--dur:5.8s;animation-delay:-4s">🥕</span>
+    <span class="zan cerca" style="top:90%;left:60%;font-size:78px;--dur:6.8s;animation-delay:-0.5s">🥕</span>
+  </div>
+  <div class="halo"></div>
+  <div class="suelo"></div>
+  <span class="star" style="top:20%;left:20%;font-size:28px">✨</span>
+  <span class="star" style="top:25%;left:75%;font-size:32px;animation-delay:0.4s">⭐</span>
+  <span class="star" style="top:70%;left:25%;font-size:26px;animation-delay:0.8s">✨</span>
+  <span class="star" style="top:75%;left:70%;font-size:30px;animation-delay:0.2s">💫</span>
+  <div class="escena">
+    <div class="bocadillo">¡No soy mago, pero hago desaparecer zanahorias! 🎩✨</div>
+    <div class="conejo-wrap">🐇</div>
+    <div class="nombre">Fran-cis-ca</div>
+  </div>
+</body>
+</html>
