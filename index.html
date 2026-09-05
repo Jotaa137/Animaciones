@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gato pibff</title>
+<style>
+  body {
+    margin: 0; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: #1a1a2e; font-family: sans-serif;
+    flex-direction: column;
+  }
+  .escena { display: flex; flex-direction: column; align-items: center; animation: bote 1s ease-in-out infinite alternate; }
+  @keyframes bote { from { transform: translateY(0); } to { transform: translateY(-20px); } }
+
+  .bocadillo {
+    position: relative;
+    margin-bottom: 20px;
+    background: white; padding: 12px 18px; border-radius: 20px;
+    font-weight: bold; font-size: 28px; color: #ff0066;
+    animation: pop 0.8s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+  }
+  .bocadillo:after {
+    content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+    border-width: 15px 10px 0 10px; border-style: solid;
+    border-color: white transparent transparent transparent;
+  }
+  @keyframes pop { from { transform: scale(0.85) rotate(-3deg); } to { transform: scale(1.1) rotate(3deg); } }
+
+  .gato { font-size: 140px; line-height: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); animation: meneo 0.6s ease-in-out infinite alternate; display: block; }
+  @keyframes meneo { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+  .suelo {
+    width: 200px; height: 20px; background: rgba(255,255,255,0.15);
+    border-radius: 50%; margin-top: 10px;
+    animation: sombra 1s ease-in-out infinite alternate;
+  }
+  @keyframes sombra { from { transform: scale(1); opacity: 0.8; } to { transform: scale(0.8); opacity: 0.4; } }
+</style>
+</head>
+<body>
+  <div class="escena">
+    <div class="bocadillo">¡pibff!</div>
+    <span class="gato">🐱</span>
+  </div>
+  <div class="suelo"></div>
+</body>
+</html>
